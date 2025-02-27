@@ -37,8 +37,8 @@ class Actividad_1():
 ingestion = Actividad_1()
 #datos_json = ingestion.leer_api("https://api.github.com/users/octocat")
 #"https://api.nbp.pl/api/exchangerates/tables/{table}/"
-#datos_json = ingestion.leer_api("https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all")
-datos_json = ingestion.leer_api("https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all")
+#datos_json = ingestion.leer_api("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@{apiVersion}/{endpoint}")
+datos_json = ingestion.leer_api("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@{apiVersion}/{endpoint}")
 print("datos json:",datos_json)
 if ingestion.escribir_txt(nombre_archivo="entrega_actividad_1.txt",datos=datos_json):
     print("se creo el archivo txt")

@@ -1,4 +1,4 @@
 {
-    "message": "https://images.dog.ceo/breeds/collie-border/n02106166_731.jpg",
+    "message": "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191103202017556_COVER.jpg",
     "status": "success"
 }

@@ -5,14 +5,14 @@ from setuptools import setup, find_packages
 setup(
     name="pad",
     version="0.0.1",
-    author="cristina ospina",
+    author="Andres Callejas",
     author_email="",
     description="",
-    py_modules=["actividad_1"],
+    py_modules=["actividad_1.py"],
     install_requires=[
         "pandas",
         "requests",
-        "matplotlib"
+        "matplotlib",
     ]
     
     

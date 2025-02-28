@@ -1,52 +1,51 @@
 import json
 import requests
-import sys
-
+import os
 
 class Actividad_1():
     def __init__(self):
-        self.ruta_static="src/pad/static/"
-       
+        self.ruta_static = "src/pad/static"
+
     def leer_api(self, url):
-        # El get()método envía una solicitud de GET a la url especificada.
+        """Solicita datos a una API y devuelve la respuesta en formato JSON."""
         response = requests.get(url)
         return response.json()
     
-    def escribir_json(self):
-        pass
-
-    #def escribir_txt(self,nombre_archivo="",datos=object):
-    def escribir_txt(self,nombre_archivo="",datos=None): # "" '' """ """
-        if nombre_archivo=="":
-            nombre_archivo="datos.txt"
+    def escribir_txt(self, nombre_archivo="", datos=None):
+        """Escribe los datos en un archivo TXT en la carpeta adecuada."""
+        if not nombre_archivo:
+            nombre_archivo = "datos.txt"
         if datos is None:
             datos = "No hay datos"
-        ruta_txt = "{}/txt/{}".format(self.ruta_static,nombre_archivo)
-        with open(ruta_txt, 'w', encoding='utf-8') as f:
+        
+        ruta_txt = os.path.join(self.ruta_static, "txt", nombre_archivo)
+        carpeta_txt = os.path.dirname(ruta_txt)
+
+        # Asegurarse de que la carpeta exista
+        os.makedirs(carpeta_txt, exist_ok=True)
+
+        # Escribir los datos en el archivo
+        with open(ruta_txt, 'w', encoding="utf-8") as f:
             json.dump(datos, f, ensure_ascii=False, indent=4)
-            f.write(str(datos))
-        return True # booleano True (1) False (0)
+        
+        return True  # Retorna True si se crea el archivo correctamente
 
-    #def graficar_rectas(self,recta_empinada, recta_plana, recta_abajo):
-    def graficar_rectas(self,a, n,x):
-        # recta_empinada 0.0, recta_plana 0.0, recta_abajo 0.0 0.0=float 0=int 6545646546 = double
-        f = (a*x)**n
-        print("funcion_calculo:",f)
+    def graficar_rectas(self, a, n, x):
+        """Calcula una función matemática con base en los parámetros dados."""
+        f = (a * x) ** n
+        print("función cálculo:", f)
 
-# vamos crea una intancia de la clase
+# Crear una instancia de la clase
 ingestion = Actividad_1()
-#datos_json = ingestion.leer_api("https://api.github.com/users/octocat")
-#"https://api.nbp.pl/api/exchangerates/tables/{table}/"
-#datos_json = ingestion.leer_api("https://dog.ceo/api/breeds/image/random")
+
+# Obtener datos de la API
 datos_json = ingestion.leer_api("https://dog.ceo/api/breeds/image/random")
-print("datos json:",datos_json)
-if ingestion.escribir_txt(nombre_archivo="entrega_actividad_1.txt",datos=datos_json):
-    print("se creo el archivo txt")
-#print("esta es la ruta statica :",ingestion.ruta_static)
-for n in  range(0,10):
+print("Datos JSON:", datos_json)
+
+# Intentar escribir el archivo
+if ingestion.escribir_txt(nombre_archivo="entrega_actividad_1.txt", datos=datos_json):
+    print("Se creó el archivo txt correctamente")
+
+# Generar cálculos con la función graficar_rectas
+for n in range(10):
     ingestion.graficar_rectas(5, n, 5.4)
-
-
-
-
-    
